@@ -4,13 +4,13 @@ var gulp  = require('gulp'),
     sass = require('gulp-sass'),
     autoprefixer = require('gulp-autoprefixer'),
     minifycss = require('gulp-minify-css'),
-    sourcemaps = require('gulp-sourcemaps'),
     jshint = require('gulp-jshint'),
     stylish = require('jshint-stylish'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
     rename = require('gulp-rename'),
-    plumber = require('gulp-plumber')
+    plumber = require('gulp-plumber'),
+    bower = require('gulp-bower')
     
 // Compile Sass, Autoprefix and minify
 gulp.task('styles', function() {
@@ -31,58 +31,84 @@ gulp.task('styles', function() {
 });    
     
 // JSHint, concat, and minify JavaScript
-gulp.task('scripts', function() {
+gulp.task('site-js', function() {
   return gulp.src([	
+	  
            // Grab your custom scripts
-  		  './assets/js/site/*.js'
+  		  './assets/js/scripts/*.js'
+  		  
   ])
     .pipe(plumber())
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'))
     .pipe(concat('scripts.js'))
-    .pipe(gulp.dest('./assets/js/min'))
+    .pipe(gulp.dest('./assets/js'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
-    .pipe(gulp.dest('./assets/js/min'))
+    .pipe(gulp.dest('./assets/js'))
 });    
 
-// JSHint, concat, and minify JavaScript
+// JSHint, concat, and minify Foundation JavaScript
+gulp.task('vendor-js', function() {
+  return gulp.src([	
+  		  
+  		  // Call all required vendor files
+          './vendor/jquery/dist/jquery.js',
+          './vendor/what-input/what-input.js'
+          
+  ])
+    .pipe(concat('vendor.js'))
+    .pipe(gulp.dest('./assets/js'))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(uglify())
+    .pipe(gulp.dest('./assets/js'))
+});
+
+// JSHint, concat, and minify Foundation JavaScript
 gulp.task('foundation-js', function() {
   return gulp.src([	
   		  
   		  // Foundation core - needed if you want to use any of the components below
-          './bower_components/foundation/js/foundation/foundation.js',
+          './vendor/foundation-sites/js/foundation.core.js',
+          './vendor/foundation-sites/js/foundation.util.*.js',
           
-          // Pick the componenets you need in your project
-          './bower_components/foundation/js/foundation/foundation.abide.js',
-          './bower_components/foundation/js/foundation/foundation.accordion.js',
-          './bower_components/foundation/js/foundation/foundation.alert.js',
-          './bower_components/foundation/js/foundation/foundation.clearing.js',
-          './bower_components/foundation/js/foundation/foundation.dropdown.js',
-          './bower_components/foundation/js/foundation/foundation.equalizer.js',
-          './bower_components/foundation/js/foundation/foundation.interchange.js',
-          './bower_components/foundation/js/foundation/foundation.joyride.js',
-          './bower_components/foundation/js/foundation/foundation.magellan.js',
-          './bower_components/foundation/js/foundation/foundation.offcanvas.js',
-          './bower_components/foundation/js/foundation/foundation.orbit.js',
-          './bower_components/foundation/js/foundation/foundation.reveal.js',
-          './bower_components/foundation/js/foundation/foundation.slider.js',
-          './bower_components/foundation/js/foundation/foundation.tab.js',
-          './bower_components/foundation/js/foundation/foundation.tooltip.js',
-          './bower_components/foundation/js/foundation/foundation.topbar.js',      
+          // Pick the components you need in your project
+          './vendor/foundation-sites/js/foundation.abide.js',
+          './vendor/foundation-sites/js/foundation.accordion.js',
+          './vendor/foundation-sites/js/foundation.accordionMenu.js',
+          './vendor/foundation-sites/js/foundation.drilldown.js',
+          './vendor/foundation-sites/js/foundation.dropdown.js',
+          './vendor/foundation-sites/js/foundation.dropdownMenu.js',
+          './vendor/foundation-sites/js/foundation.equalizer.js',
+          './vendor/foundation-sites/js/foundation.interchange.js',
+          './vendor/foundation-sites/js/foundation.magellan.js',
+          './vendor/foundation-sites/js/foundation.offcanvas.js',
+          './vendor/foundation-sites/js/foundation.orbit.js',
+          './vendor/foundation-sites/js/foundation.responsiveMenu.js',
+          './vendor/foundation-sites/js/foundation.responsiveToggle.js',
+          './vendor/foundation-sites/js/foundation.reveal.js',
+          './vendor/foundation-sites/js/foundation.slider.js',
+          './vendor/foundation-sites/js/foundation.sticky.js',
+          './vendor/foundation-sites/js/foundation.tabs.js',
+          './vendor/foundation-sites/js/foundation.toggler.js',
+          './vendor/foundation-sites/js/foundation.tooltip.js',
   ])
-    .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'))
     .pipe(concat('foundation.js'))
-    .pipe(gulp.dest('./assets/js/min'))
+    .pipe(gulp.dest('./assets/js'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
-    .pipe(gulp.dest('./assets/js/min'))
+    .pipe(gulp.dest('./assets/js'))
+});
+
+// Update Foundation with Bower and save to /vendor
+gulp.task('bower', function() {
+  return bower({ cmd: 'update'})
+    .pipe(gulp.dest('vendor/'))
 });    
 
 // Create a default task 
 gulp.task('default', function() {
-  gulp.start('styles', 'scripts', 'foundation-js');
+  gulp.start('styles', 'site-js', 'vendor-js', 'foundation-js');
 });
 
 // Watch files for changes
@@ -92,9 +118,9 @@ gulp.task('watch', function() {
   gulp.watch('./assets/scss/**/*.scss', ['styles']);
 
   // Watch site-js files
-  gulp.watch('./assets/js/site/*.js', ['scripts']);
+  gulp.watch('./assets/js/scripts/*.js', ['site-js']);
   
   // Watch foundation-js files
-  gulp.watch('./bower_components/foundation/js/foundation/*.js', ['foundation-js']);
+  gulp.watch('./vendor/foundation-sites/js/*.js', ['foundation-js']);
 
 });
