@@ -8,10 +8,7 @@ CSS file.
 
 ******************************************************************/
 
-// Import normalize from vendor files
-@import "../../vendor/foundation-sites/scss/vendor/normalize";
-
-// Import mixins
+// Import custom mixins
 @import "mixins";
 
 // Import local Foundation overrides - Don't link to Bower version as it will be overwritten whenever updated
@@ -28,9 +25,11 @@ CSS file.
 // Select the components you want to use
 @include foundation-global-styles;
 @include foundation-grid;
+//@include foundation-flex-classes;
+//@include foundation-flex-grid;
 @include foundation-typography;
-@include foundation-button;
 @include foundation-forms;
+@include foundation-button;
 @include foundation-visibility-classes;
 @include foundation-float-classes;
 @include foundation-accordion;
@@ -47,6 +46,7 @@ CSS file.
 @include foundation-label;
 @include foundation-media-object;
 @include foundation-menu;
+@include foundation-menu-icon;
 @include foundation-off-canvas;
 @include foundation-orbit;
 @include foundation-pagination;
@@ -62,14 +62,18 @@ CSS file.
 @include foundation-tooltip;
 @include foundation-top-bar;
 
+
 // Import your custom styles
 @import "main";
 
-// Import your retina/HD sty;es
+// Import your retina/HD styles
 @import "2x";
 
 // Import your print styles
 @import "print";
+<<<<<<< HEAD
 
 // Import helper classes
 @import "helper_classes";
+=======
+>>>>>>> 850492598529d56d41eb7438cf90e61d90b42960
