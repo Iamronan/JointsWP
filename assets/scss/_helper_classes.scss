@@ -1,0 +1,26 @@
+/*------------------------------------*\
+   Helper Classes
+\*------------------------------------*/
+
+$base-space-unit: 1em;
+
+// Top margin
+.margin-top-none    { margin-top: 0; }
+.margin-top-quarter { margin-top: $base-space-unit / 4; }
+.margin-top-half    { margin-top: $base-space-unit / 2; }
+.margin-top-one     { margin-top: $base-space-unit; }
+.margin-top-two     { margin-top: $base-space-unit * 2; }
+
+// Bottom padding
+.padding-bottom-none    { padding-bottom: 0; }
+.padding-bottom-quarter { padding-bottom: $base-space-unit / 4; }
+.padding-bottom-half    { padding-bottom: $base-space-unit / 2; }
+.padding-bottom-one     { padding-bottom: $base-space-unit; }
+.padding-bottom-two     { padding-bottom: $base-space-unit * 2; }
+
+
+.m0  { margin:        0 }
+.mt0 { margin-top:    0 }
+.mr0 { margin-right:  0 }
+.mb0 { margin-bottom: 0 }
+.ml0 { margin-left:   0 }
