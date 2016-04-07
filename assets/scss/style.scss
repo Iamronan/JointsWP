@@ -73,4 +73,10 @@ CSS file.
 @import "print";
 
 // Import helper classes
-@import "helper_classes";
+@import "utilities/helper_classes";
+
+// Import components classes
+@import "components/components";
+
+// Import components classes
+@import "layout/layout";

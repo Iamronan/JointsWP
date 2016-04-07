@@ -1,11 +1,11 @@
 @charset "UTF-8";
 /******************************************************************
-	
+
 Stylesheet: Main Stylesheet
 
 Here's where the magic happens. Here is where you import
 all of your Sass files so they can compile into one
-CSS file. 
+CSS file.
 
 ******************************************************************/
 /******************************************************************
@@ -49,6 +49,10 @@ span.amp {
 CSS3 GRADIENTS.
 *********************/
 /* @include css-gradient(#dfdfdf,#f8f8f8); */
+/*------------------------------------*Border Radius
+\*------------------------------------*/
+/*------------------------------------*Transition Mixin
+\*------------------------------------*/
 /**
  * Foundation for Sites by ZURB
  * Version 6.2.0
@@ -4462,11 +4466,8 @@ to display none.
   nav {
     display: none; } }
 
-/******************************************************************
-
-Helper Classses
-
-******************************************************************/
+/*------------------------------------*   Helper Classes
+\*------------------------------------*/
 .margin-top-none {
   margin-top: 0; }
 
@@ -4482,20 +4483,20 @@ Helper Classses
 .margin-top-two {
   margin-top: 2em; }
 
-.padding-top-none {
-  padding-top: 0; }
+.padding-bottom-none {
+  padding-bottom: 0; }
 
-.padding-top-quarter {
-  padding-top: 0.25em; }
+.padding-bottom-quarter {
+  padding-bottom: 0.25em; }
 
-.padding-top-half {
-  padding-top: 0.5em; }
+.padding-bottom-half {
+  padding-bottom: 0.5em; }
 
-.padding-top-one {
-  padding-top: 1em; }
+.padding-bottom-one {
+  padding-bottom: 1em; }
 
-.padding-top-two {
-  padding-top: 2em; }
+.padding-bottom-two {
+  padding-bottom: 2em; }
 
 .m0 {
   margin: 0; }
@@ -4511,3 +4512,25 @@ Helper Classses
 
 .ml0 {
   margin-left: 0; }
+
+/****************************
+
+Stylesheet: Components
+
+*****************************/
+/****************************
+
+Stylesheet: Layout
+
+*****************************/
+/*------------------------------------*   Custom Layout Classes
+\*------------------------------------*/
+.section {
+  width: 100%;
+  float: left;
+  clear: both; }
+
+.wrap {
+  width: 100%;
+  float: left;
+  clear: both; }

@@ -1,0 +1,30 @@
+/******************************************************************
+
+Oultines content for each of the scss files - Example
+
+******************************************************************/
+
+/**
+ * CONTENTS
+ *
+ * SETTINGS
+ * settings.scss........Globally-available variables and config for foundation 6
+ including base styles.
+ *
+ * STYLE
+ * style.scss...........Imports all required SASS related files for compiling
+ * main.scss............Main style sheet for wordpress classes
+ * layout.scss..........Custom semantic layout classes including wrappers
+ *
+ * TOOLS
+ * mixins.scss..........Useful mixins.
+ *
+ *
+ * General
+ * print.scss...........Print stylesheet
+ * login.scss...........Wordpress Login page styles
+ * 2x.scss..............retina images
+ *
+ * TRUMPS
+ * helper-classes.scss. Helper classes.
+ */
